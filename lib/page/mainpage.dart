@@ -115,6 +115,7 @@ class _MainPageState extends State<MainPage> {
                               decoration:
                                   const InputDecoration(labelText: 'Age'),
                               controller: ageController,
+                              keyboardType: TextInputType.number,
                             ),
                           ],
                         ),
