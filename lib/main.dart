@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:simple_widget_app/page/mainpage.dart';
 
 void main() {
-  runApp(const MyApp(home:MainPage() ,));
+  runApp(const MyApp(
+    home: MainPage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
