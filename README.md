@@ -1,4 +1,4 @@
-# Time Used
+# Time Taken
 - Page 1 : 15 Minutes
 - Page 2 : 50 Minutes
 - Page 3 : 2 Hours
