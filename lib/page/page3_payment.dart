@@ -10,10 +10,10 @@ class AmountPage extends StatefulWidget {
 }
 
 class _AmountPageState extends State<AmountPage> {
-TextEditingController amountController = TextEditingController();
-  void textFormat(String? value) async{
+  TextEditingController amountController = TextEditingController();
+  void textFormat(String? value) async {
     await Future.delayed(Duration(milliseconds: 1));
-    if(value == null || value == ""){
+    if (value == null || value == "") {
       setState(() {
         amountController.text = "RM 0.00";
       });
@@ -25,60 +25,58 @@ TextEditingController amountController = TextEditingController();
     return;
   }
 
-
 //the function that will validate your input, dont change it
-  bool formatValidation(String value){
-    if(!value.startsWith('RM ')){
+  bool formatValidation(String value) {
+    if (!value.startsWith('RM ')) {
       return false;
-    }else if(value.length - value.lastIndexOf('.') !=3){
-      final num =value.lastIndexOf('.');
+    } else if (value.length - value.lastIndexOf('.') != 3) {
+      final num = value.lastIndexOf('.');
       return false;
     }
-     String testValue = value.replaceFirst("RM", "");
-     testValue = testValue.replaceFirst(".", "");
-     testValue = testValue.replaceAll(" ", "");
-     if(int.tryParse(testValue) == null){
+    String testValue = value.replaceFirst("RM", "");
+    testValue = testValue.replaceFirst(".", "");
+    testValue = testValue.replaceAll(" ", "");
+    if (int.tryParse(testValue) == null) {
       return false;
-     }
+    }
 
     return true;
-
-
-
   }
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return Scaffold(
-     
       body: SingleChildScrollView(
-        
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            
             children: [
               Text("Please Filled in the amount"),
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Container(
-              width: 300,
-              child:  TextField(
-                controller: amountController,
-                onChanged: textFormat,
-                
+                width: 300,
+                child: TextField(
+                  controller: amountController,
+                  onChanged: textFormat,
+                ),
               ),
+              SizedBox(
+                height: 20,
               ),
-             
-              SizedBox(height: 20,),
-              FilledButton(onPressed: (){
-                final result = formatValidation(amountController.text);
-                if(result){
-                  displayAlert(context, "Congratulation", "You pass the test");
-                }else{
-                   displayAlert(context, "Sorry", "You fail the test");
-                }
-              }, child: Text("Validate Result"))
+              FilledButton(
+                  onPressed: () {
+                    final result = formatValidation(amountController.text);
+                    if (result) {
+                      displayAlert(
+                          context, "Congratulation", "You pass the test");
+                    } else {
+                      displayAlert(context, "Sorry", "You fail the test");
+                    }
+                  },
+                  child: Text("Validate Result"))
             ],
           ),
         ),
