@@ -193,7 +193,7 @@ class _DateTimePageState extends State<DateTimePage> {
                       if (date == null) {
                         return;
                       }
-                      if (endDate1 != null) {
+                      if (endDate2 != null) {
                         if (endDate2!.isBefore(date)) {
                           displayAlert(context, "Alert",
                               "Please don't pick End-Date Earlier than Start-Date");

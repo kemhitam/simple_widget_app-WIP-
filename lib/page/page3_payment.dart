@@ -11,6 +11,7 @@ class AmountPage extends StatefulWidget {
 
 class _AmountPageState extends State<AmountPage> {
   TextEditingController amountController = TextEditingController();
+
   void textFormat(String? value) async {
     await Future.delayed(Duration(milliseconds: 1));
     if (value == null || value == "") {
@@ -22,7 +23,23 @@ class _AmountPageState extends State<AmountPage> {
     //complete the following function, the format must be "RM x.xx", for example "RM 123.34"
     //the new value should push to the current value (can refer tng ewallet)
     // u can use keyboardType: TextInputType.number, to restrict the user input
-    return;
+    String extractedNumber = value.replaceAll(RegExp('[^0-9]'), '');
+
+    if (extractedNumber.length >= 2) {
+      extractedNumber =
+          "${extractedNumber.substring(0, extractedNumber.length - 2)}.${extractedNumber.substring(extractedNumber.length - 2)}";
+    } else {
+      extractedNumber = "0.${extractedNumber.padLeft(2, "0")}";
+    }
+
+    extractedNumber = extractedNumber.replaceFirst(RegExp('^0'), '');
+
+    if (extractedNumber.startsWith('.')) {
+      extractedNumber = "0$extractedNumber";
+    }
+    setState(() {
+      amountController.text = "RM $extractedNumber";
+    });
   }
 
 //the function that will validate your input, dont change it
@@ -60,6 +77,7 @@ class _AmountPageState extends State<AmountPage> {
                 width: 300,
                 child: TextField(
                   controller: amountController,
+                  keyboardType: TextInputType.number,
                   onChanged: textFormat,
                 ),
               ),

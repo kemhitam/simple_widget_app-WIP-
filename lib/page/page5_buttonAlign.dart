@@ -63,17 +63,9 @@ class _ButtonAlignmentPageState extends State<ButtonAlignmentPage> {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        decoration: const BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: Colors.blue,
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        ),
-        child: IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {},
-          color: Colors.white,
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }

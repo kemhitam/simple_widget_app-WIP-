@@ -26,6 +26,11 @@ class _MainPageState extends State<MainPage> {
     super.initState();
   }
 
+  void _tncCallBack() {
+    content = null;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,7 @@ class _MainPageState extends State<MainPage> {
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
-                  content = const TermAndConditionPage();
+                  content = TermAndConditionPage(tncCallBack: _tncCallBack);
                   title = "Term And Condition";
                 });
               },
@@ -105,6 +110,7 @@ class _MainPageState extends State<MainPage> {
                       return AlertDialog(
                         title: const Text("Enter Your Information!"),
                         content: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             TextFormField(
                               decoration:
